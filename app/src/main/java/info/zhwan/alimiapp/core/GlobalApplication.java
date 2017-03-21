@@ -16,9 +16,6 @@ public class GlobalApplication extends Application {
     private ImageLoader imageLoader;
     private KakaoSDKAdapter kakaoSDKAdapter;
 
-    //
-    private UserProfile userProfile;
-
     public static GlobalApplication getGlobalApplicationContext() {
         if(instance == null)
             throw new IllegalStateException("this application does not inherit com.kakao.GlobalApplication");
@@ -58,14 +55,6 @@ public class GlobalApplication extends Application {
 
     public KakaoSDKAdapter getKakaoSDKAdapter() {
         return kakaoSDKAdapter;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-    }
-
-    public UserProfile getUserProfile() {
-        return userProfile;
     }
 
     @Override
