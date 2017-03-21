@@ -13,6 +13,15 @@ KAKAO API 이용, 로그인, 푸시 구현
 
 **구현시 `app/src/main/res/values/kakao_strings.xml` 에 있는 내용을 본인 값으로 변경해야 함**
 
+# 키 생성
+
+```bash
+
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android | openssl sha1 -binary | openssl base64
+
+keytool -exportcert -alias <release_key_alias> -keystore <release_keystore_path> | openssl sha1 -binary | openssl base64
+
+```
 
 # 구현 참조
 
