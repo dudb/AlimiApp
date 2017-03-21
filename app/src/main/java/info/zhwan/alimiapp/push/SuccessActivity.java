@@ -2,6 +2,7 @@ package info.zhwan.alimiapp.push;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -52,7 +53,6 @@ public class SuccessActivity extends PushActivity {
         profileLayout.setMeResponseCallback(new MeResponseCallback() {
             @Override
             public void onNotSignedUp() {
-                System.out.println("aaaaaaaaaaaaaaaaaa");
 //                redirectSignupActivity();
             }
 
@@ -75,9 +75,15 @@ public class SuccessActivity extends PushActivity {
                     SuccessActivity.this.userProfile = result;
                     userProfile.saveUserToCache();
                     showProfile();
-
-                    GlobalApplication.getGlobalApplicationContext().setUserProfile(userProfile);
+                    saveUserId();
                 }
+            }
+
+            private void saveUserId() {
+                SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("alimiapp.db", MODE_PRIVATE, null);
+                sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ALIMIAPP_TAB");
+                sqLiteDatabase.execSQL("CREATE TABLE ALIMIAPP_TAB (id text)");
+                sqLiteDatabase.execSQL("INSERT INTO ALIMIAPP_TAB (id) VALUES ('" + userProfile.getId() + "')");
             }
         });
         profileLayout.requestMe();

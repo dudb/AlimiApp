@@ -6,12 +6,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.kakao.auth.Session;
 import com.kakao.usermgmt.response.model.UserProfile;
 
 import java.nio.charset.Charset;
@@ -41,20 +44,17 @@ public class GcmIntentService extends IntentService {
 
 
     private void sendNotification(Bundle data) {
-
+        String userId = getUserId();
         String title = data.getString("title");
         String bookId = data.getString("bookid");
         String message = new String(data.getString("message").getBytes(), Charset.defaultCharset());
-
-        UserProfile userProfile =
-                GlobalApplication.getGlobalApplicationContext().getUserProfile();
-        Log.d("GcmIntentService", "ID is " + userProfile.getId());
+        Log.d("GcmIntentService", "ID is " + userId);
         Log.d("GcmIntentService", "title is " + title);
         Log.d("GcmIntentService", "bookId is " + bookId);
         Log.d("GcmIntentService", "message is " + message);
 
-        Intent intent = new Intent(this, SuccessActivity.class);
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://aaaa/userid/"));
+//        Intent intent = new Intent(this, SuccessActivity.class);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ip/bookId/userId"));
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -73,5 +73,12 @@ public class GcmIntentService extends IntentService {
 
         NotificationManager notiManager = NotificationManager.class.cast(getSystemService(Context.NOTIFICATION_SERVICE));
         notiManager.notify((int)System.currentTimeMillis(), builder.build());
+    }
+
+    private String getUserId() {
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("alimiapp.db", MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id from ALIMIAPP_TAB", null);
+        cursor.moveToNext();
+        return cursor.getString(0);
     }
 }
