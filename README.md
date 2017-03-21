@@ -11,6 +11,9 @@ KAKAO API 이용, 로그인, 푸시 구현
 
 [구글 GCM](https://developers.google.com/mobile/add)
 
+**구현시 `app/src/main/res/values/kakao_strings.xml` 에 있는 내용을 본인 값으로 변경해야 함**
+
+
 # 구현 참조
 
 [DEV 1](http://tkddlf4209.blog.me/220684818671)
