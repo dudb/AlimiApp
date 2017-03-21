@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AlimiApp</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
+    <!-- For Push -->
+    <string name="push_tokens">Get push token info</string>
+    <string name="push_unregister">Unregister push token</string>
+    <string name="push_register">Register push token</string>
+</resources>

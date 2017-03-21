@@ -1,0 +1,9 @@
+<resources>
+    <string name="kakao_app_key">카카오 네이티브 앱 키</string>
+    <string name="gcm_project_number">구글 GCM 프로젝트 번호</string>
+
+    <!--<string name="kakao_scheme">kakaodd4e9cb75815cbdf7d87ed721a659baf</string>-->
+    <!--<string name="kakaotalk_host">kakaotalk</string>-->
+    <!--<string name="kakaolink_host">kakaolink</string>-->
+    <!--<string name="kakaostory_host">kakaostory</string>-->
+</resources>

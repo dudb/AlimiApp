@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="info.zhwan.alimiapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+    <!--<uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>-->
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <permission android:name="com.kakao.sample.push.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.kakao.sample.push.permission.C2D_MESSAGE"/>
+
+    <application
+        android:name=".core.GlobalApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+
+        <meta-data android:name="com.kakao.sdk.GcmProjectId"
+            android:value="@string/gcm_project_number"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+
+        <activity
+            android:name=".push.SuccessActivity"
+            android:configChanges="screenSize|orientation"
+            android:launchMode="singleTop"/>
+
+        <receiver
+            android:name=".push.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <!-- d. android:name="{package 이름}" 사용 -->
+                <category android:name="info.zhwan.alimiapp.push" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".push.GcmIntentService"/>
+
+    </application>
+
+</manifest>

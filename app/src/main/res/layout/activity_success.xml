@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <info.zhwan.alimiapp.core.widget.ProfileLayout
+                android:id="@+id/com_kakao_user_profile"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"/>
+
+            <CheckedTextView
+                android:id="@+id/registger_button"
+                android:layout_width="fill_parent"
+                android:layout_height="72dp"
+                style="@style/iconText"
+                android:drawableLeft="@drawable/icon_push_01"
+                android:onClick="onClick"
+                android:text="@string/push_register" />
+
+            <CheckedTextView
+                android:id="@+id/unregistger_button"
+                android:layout_width="fill_parent"
+                android:layout_height="72dp"
+                style="@style/iconText"
+                android:drawableLeft="@drawable/icon_push_02"
+                android:onClick="onClick"
+                android:text="@string/push_unregister" />
+
+
+            <CheckedTextView
+                android:id="@+id/view_button"
+                android:layout_width="fill_parent"
+                android:layout_height="72dp"
+                style="@style/iconText"
+                android:drawableLeft="@drawable/icon_push_04"
+                android:onClick="onClick"
+                android:text="@string/push_tokens" />
+
+
+            <Button
+                android:id="@+id/logout_button"
+                android:layout_weight="1"
+                style="@style/button"
+                android:onClick="onClick"
+                android:background="@drawable/selector_button_03"
+                android:text="@string/com_kakao_logout_button" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
